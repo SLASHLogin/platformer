@@ -2,12 +2,18 @@ extends Actor
 
 export var stomp_impulse = 1000.0
 
+onready var anim_player: AnimationPlayer = $AnimationPlayer
+
 func _on_EnemyDetector_area_entered(area: Area2D):
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
 func _on_EnemyDetector_body_entered(body):
-	queue_free()
-	
+	anim_player.play("fade_out")
+	_velocity = Vector2(0, 1500)
+	var scene = get_tree().get_current_scene().get_name()
+	global.reload_scene = scene
+	yield(get_tree().create_timer(0.7), "timeout")
+	get_tree().change_scene("res://src/Levels/Credits.tscn")
 
 func _physics_process(_delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0 
