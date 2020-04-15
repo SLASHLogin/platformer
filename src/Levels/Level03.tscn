@@ -32,7 +32,7 @@ points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 } ]
 0/z_index = 0
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="Level03" type="Node2D"]
 position = Vector2( 1, 0 )
 __meta__ = {
 "_edit_vertical_guides_": [ 8486.0 ]
